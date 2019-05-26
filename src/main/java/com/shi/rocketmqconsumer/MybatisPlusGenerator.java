@@ -17,7 +17,7 @@
 //
 //        // 全局配置
 //        GlobalConfig gc = new GlobalConfig();
-//        gc.setOutputDir("E:\\rocketmq-consumer\\src\\main\\java");//这里写你自己的java目录
+//        gc.setOutputDir("F:\\rocketmq-consumer\\src\\main\\java");//这里写你自己的java目录
 //        gc.setFileOverride(false);//是否覆盖
 //        gc.setActiveRecord(true);
 //        gc.setEnableCache(false);// XML 二级缓存
@@ -29,24 +29,23 @@
 //        // 数据源配置
 //        DataSourceConfig dsc = new DataSourceConfig();
 //        dsc.setDbType(DbType.MYSQL);
-//        dsc.setTypeConvert((globalConfig, s) -> DbColumnType.BASE_BYTE);
-////        dsc.setTypeConvert(new MySqlTypeConvert() {
-////            // 自定义数据库表字段类型转换【可选】
-////            @Override
-////            public DbColumnType processTypeConvert(String fieldType) {
-////                return super.processTypeConvert(fieldType);
-////            }
-////        });
+//        dsc.setTypeConvert(new MySqlTypeConvert() {
+//            // 自定义数据库表字段类型转换【可选】
+//            @Override
+//            public DbColumnType processTypeConvert(GlobalConfig globalConfig,String fieldType) {
+//                return super.processTypeConvert(globalConfig,fieldType);
+//            }
+//        });
 //        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
 //        dsc.setUsername("root");
-//        dsc.setPassword("123456");
+//        dsc.setPassword("syk123456");
 //        dsc.setUrl("jdbc:mysql://localhost:3306/rocketmq?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC");
 //        mpg.setDataSource(dsc);
 //
 //        // 策略配置
 //        StrategyConfig strategy = new StrategyConfig();
 ////        strategy.setTablePrefix(new String[]{""});// 此处可以修改为您的表前缀
-//        strategy.setInclude(new String[]{"message","user"});//需要生成的表
+//        strategy.setInclude(new String[]{"messagetag1","messagetag2"});//需要生成的表
 //        strategy.setNaming(NamingStrategy.underline_to_camel);//表名生成策略
 //        //strategy.setEntityColumnConstant(true);
 //        //strategy.setEntityBuilderModel(true);

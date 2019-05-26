@@ -1,6 +1,6 @@
 package com.shi.rocketmqconsumer.dao;
 
-import com.shi.rocketmqconsumer.entity.User;
+import com.shi.rocketmqconsumer.entity.Messagetag1;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author shiyakun
- * @since 2019-05-24
+ * @since 2019-05-26
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface Messagetag1Mapper extends BaseMapper<Messagetag1> {
 
 }

@@ -1,6 +1,6 @@
 package com.shi.rocketmqconsumer.service;
 
-import com.shi.rocketmqconsumer.entity.Message;
+import com.shi.rocketmqconsumer.entity.Messagetag1;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author shiyakun
- * @since 2019-05-24
+ * @since 2019-05-26
  */
-public interface IMessageService extends IService<Message> {
+public interface IMessagetag1Service extends IService<Messagetag1> {
 
 }
