@@ -35,8 +35,11 @@ public class MQConsumerConfiguration {
     @Value("${rocketmq.consumer.consumeMessageBatchMaxSize}")
     private int consumeMessageBatchMaxSize;
 
+//    @Autowired
+//    private MQConsumeMsgListenerProcessor mqMessageListenerProcessor;
+
     @Autowired
-    private MQConsumeMsgListenerProcessor mqMessageListenerProcessor;
+    private MQRedisConsumeMsgListenerProcessor mqRedisConsumeMsgListenerProcessor;
 
     @Bean
     public DefaultMQPushConsumer getRocketMQConsumer() throws RocketMQException {
@@ -55,7 +58,9 @@ public class MQConsumerConfiguration {
         consumer.setNamesrvAddr(namesrvAddr);
         consumer.setConsumeThreadMin(consumeThreadMin);
         consumer.setConsumeThreadMax(consumeThreadMax);
-        consumer.registerMessageListener(mqMessageListenerProcessor);
+//        consumer.registerMessageListener(mqMessageListenerProcessor);
+        consumer.registerMessageListener(mqRedisConsumeMsgListenerProcessor);
+
 
         /**
          * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费
