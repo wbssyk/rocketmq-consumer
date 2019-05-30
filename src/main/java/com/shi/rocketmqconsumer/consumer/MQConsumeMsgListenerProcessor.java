@@ -44,22 +44,22 @@
 //        IMessagetag2Service messagetag2Service = SpringUtil.getBean(IMessagetag2Service.class);
 //        //logger.info("接收到的消息是："+messageExt.toString());
 //        logger.info("接收到的消息是：" + msg);
-//        if (messageExt.getTopic().equals("Topic-1")) {
-//            if (messageExt.getTags().equals("Tag-1")) {
-//                int reconsumeTimes = messageExt.getReconsumeTimes();
-//                Messagetag1 messagetag1 = new Messagetag1();
-//                messagetag1.setMessageinfo(messageTemplate.getMessageinfo());
-//                messagetag1.setMsgid(messageExt.getMsgId());
-//                messagetag1.setTag(messageExt.getTags());
-//                messagetag1.setTopic(messageExt.getTopic());
-//
-//                if (reconsumeTimes == 3) {
-//                    return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-//                }
-//                //TODO 处理对应的业务逻辑
-//                messagetag1Service.save(messagetag1);
-//            }
-//        }
+////        if (messageExt.getTopic().equals("Topic-1")) {
+////            if (messageExt.getTags().equals("Tag-1")) {
+////                int reconsumeTimes = messageExt.getReconsumeTimes();
+////                Messagetag1 messagetag1 = new Messagetag1();
+////                messagetag1.setMessageinfo(messageTemplate.getMessageinfo());
+////                messagetag1.setMsgid(messageExt.getMsgId());
+////                messagetag1.setTag(messageExt.getTags());
+////                messagetag1.setTopic(messageExt.getTopic());
+////
+////                if (reconsumeTimes == 3) {
+////                    return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+////                }
+////                //TODO 处理对应的业务逻辑
+////                messagetag1Service.save(messagetag1);
+////            }
+////        }
 //        if (messageExt.getTopic().equals("Topic-1")) {
 //            if (messageExt.getTags().equals("Tag-2")) {
 //                //重试次数

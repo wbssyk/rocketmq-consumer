@@ -5,6 +5,7 @@ import com.shi.rocketmqconsumer.entity.Messagetag1;
 import com.shi.rocketmqconsumer.entity.Messagetag2;
 import com.shi.rocketmqconsumer.service.IMessagetag1Service;
 import com.shi.rocketmqconsumer.service.IMessagetag2Service;
+import com.shi.rocketmqconsumer.utils.DateUtils;
 import com.shi.rocketmqconsumer.utils.SpringUtil;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
@@ -17,6 +18,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,9 +55,15 @@ public class MQRedisConsumeMsgListenerProcessor implements MessageListenerConcur
                 messagetag1.setMsgid(messageExt.getMsgId());
                 messagetag1.setTag(messageExt.getTags());
                 messagetag1.setTopic(messageExt.getTopic());
-                redisTemplate.opsForValue().set(messageExt.getMsgId(),messagetag1);
+//                redisTemplate.opsForValue().set(messageExt.getMsgId(),messagetag1);
+
                 if (messageExt.getReconsumeTimes() == 3) {
                     return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+                }
+                try {
+                    redisTemplate.opsForList().leftPush(DateUtils.dateToString(LocalDateTime.now()),messagetag1);
+                } catch (Throwable e) {
+                    e.printStackTrace();
                 }
             }
         }
