@@ -15,12 +15,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @ClassName MQRedisConsumeMsgListenerProcessor
@@ -48,25 +50,26 @@ public class MQRedisConsumeMsgListenerProcessor implements MessageListenerConcur
         MessageTemplate messageTemplate = gson.fromJson(msg, MessageTemplate.class);
 
         logger.info("接收到的消息是：" + msg);
-        if (messageExt.getTopic().equals("Topic-1")) {
-            if (messageExt.getTags().equals("Tag-1")) {
-                Messagetag1 messagetag1 = new Messagetag1();
-                messagetag1.setMessageinfo(messageTemplate.getMessageinfo());
-                messagetag1.setMsgid(messageExt.getMsgId());
-                messagetag1.setTag(messageExt.getTags());
-                messagetag1.setTopic(messageExt.getTopic());
-//                redisTemplate.opsForValue().set(messageExt.getMsgId(),messagetag1);
+        if (messageExt.getTags().equals("Tag-1")) {
+            Messagetag1 messagetag1 = new Messagetag1();
+            messagetag1.setMessageinfo(messageTemplate.getMessageinfo());
+            messagetag1.setMsgid(messageExt.getMsgId());
+            messagetag1.setTag(messageExt.getTags());
+            messagetag1.setTopic(messageExt.getTopic());
 
-                if (messageExt.getReconsumeTimes() == 3) {
-                    return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-                }
-                try {
-                    redisTemplate.opsForList().leftPush(DateUtils.dateToString(LocalDateTime.now()),messagetag1);
-                } catch (Throwable e) {
-                    e.printStackTrace();
-                }
+            if (messageExt.getReconsumeTimes() == 3) {
+                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            }
+            try {
+                String s = DateUtils.dateToString(LocalDateTime.now());
+                redisTemplate.opsForZSet().add(s, messagetag1, 0.1f);
+//                Set range = redisTemplate.opsForZSet().range(s, 0, -1);
+                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            } catch (Throwable e) {
+                e.printStackTrace();
+                return ConsumeConcurrentlyStatus.RECONSUME_LATER;
             }
         }
-        return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+       return null;
     }
 }

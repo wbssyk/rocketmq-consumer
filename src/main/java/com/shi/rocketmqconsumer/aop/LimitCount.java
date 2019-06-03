@@ -9,20 +9,16 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @ClassName LimitAop
  * @Author yakun.shi
- * @Date 2019/6/3 14:32
- * @Version 1.0
+ * @Description //接口限流AOP实现
+ * @Date 2019/6/3 16:58
  **/
 @Aspect
 @Logger
@@ -37,17 +33,17 @@ public class LimitCount {
      * 定义有一个切入点，范围为web包下的类
      */
     @Pointcut("@annotation(com.shi.rocketmqconsumer.annotation.CurrentLimit)")
-    public void checkParam() {
+    public void limitCount() {
     }
 
-    @Before("checkParam()")
+    @Before("limitCount()")
     public void doBefore(JoinPoint joinPoint) {
     }
 
     /**
      * 检查参数是否为空
      */
-    @Around("checkParam()")
+    @Around("limitCount()")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
         MethodSignature signature = ((MethodSignature) pjp.getSignature());
         //得到拦截的方法
@@ -57,7 +53,7 @@ public class LimitCount {
         int count = annotation.count();
         long time = annotation.time();
         String key = annotation.key();
-//        RedisTemplate redisTemplate = SpringUtil.getBean(RedisTemplate.class);
+        // 使用redis自增原子性来限制接口请求次数
         Long increment = redisTemplate.opsForValue().increment(key, 1);
         if (increment == 1) {
             //设置有效期一分钟
@@ -74,7 +70,7 @@ public class LimitCount {
      *
      * @param joinPoint
      */
-    @AfterReturning("checkParam()")
+    @AfterReturning("limitCount()")
     public void doAfterReturning(JoinPoint joinPoint) {
     }
 

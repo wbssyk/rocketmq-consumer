@@ -1,5 +1,6 @@
 //package com.shi.rocketmqconsumer;
 //
+//import com.shi.rocketmqconsumer.entity.Messagetag1;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.slf4j.Logger;
@@ -18,12 +19,15 @@
 //    private RedisTemplate redisTemplate;
 //    @Test
 //    public void contextLoads() {
-//        redisTemplate.opsForValue().set("a","测试集群");
+//        Messagetag1 messagetag1 = new Messagetag1();
+//        messagetag1.setMsgid("23232323");
+//        redisTemplate.opsForZSet().add("2017-01-20",messagetag1,0.1f);
 //    }
 //
 //    @Test
 //    public void get() {
-//        Object a = redisTemplate.opsForValue().get("a");
+//
+//        Object a = redisTemplate.opsForZSet().range("2017-01-20",-1,0);
 //        System.out.println("-------------------------"+a.toString());
 //        logger.info("{}:");
 //        logger.info("--------------------------",a.toString());
