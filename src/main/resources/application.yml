@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/rocketmq?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/rocket_mq?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -25,7 +25,7 @@ rocketmq:
     isOnOff: on
     groupName: rocketmq-shiyakun
     namesrvAddr: 192.168.1.200:9876;192.168.1.201:9876;192.168.1.202:9876
-    topics: Topic-1
+    topics: Topic-2
     consumeThreadMin: 20
     consumeThreadMax: 64
     consumeMessageBatchMaxSize: 1

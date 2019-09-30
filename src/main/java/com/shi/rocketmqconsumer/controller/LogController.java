@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author shiyakun
- * @since 2019-05-26
+ * @since 2019-09-30
  */
 @Controller
-@RequestMapping("/messagetag2")
-public class Messagetag2Controller {
+@RequestMapping("/log")
+public class LogController {
 
 }
 

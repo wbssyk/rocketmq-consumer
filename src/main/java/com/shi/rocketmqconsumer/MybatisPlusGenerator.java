@@ -10,19 +10,30 @@
 //
 //import java.util.HashMap;
 //import java.util.Map;
-//
+///**
+// * @Method
+// * @Author yakun.shi
+// * @Description
+// * @Return
+// * @Date 2019/9/30 9:18
+// */
 //public class MybatisPlusGenerator {
 //    public static void main(String[] args) {
 //        AutoGenerator mpg = new AutoGenerator();
 //
 //        // 全局配置
 //        GlobalConfig gc = new GlobalConfig();
-//        gc.setOutputDir("F:\\rocketmq-consumer\\src\\main\\java");//这里写你自己的java目录
-//        gc.setFileOverride(false);//是否覆盖
+//        //这里写你自己的java目录
+//        gc.setOutputDir("D:\\javademo\\rocketmq-consumer\\src\\main\\java");
+//        //是否覆盖
+//        gc.setFileOverride(false);
 //        gc.setActiveRecord(true);
-//        gc.setEnableCache(false);// XML 二级缓存
-//        gc.setBaseResultMap(true);// XML ResultMap
-//        gc.setBaseColumnList(true);// XML columList
+//        // XML 二级缓存
+//        gc.setEnableCache(false);
+//        // XML ResultMap
+//        gc.setBaseResultMap(true);
+//        // XML columList
+//        gc.setBaseColumnList(true);
 //        gc.setAuthor("shiyakun");
 //        mpg.setGlobalConfig(gc);
 //
@@ -36,17 +47,20 @@
 //                return super.processTypeConvert(globalConfig,fieldType);
 //            }
 //        });
-//        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+//        dsc.setDriverName("com.mysql.jdbc.Driver");
 //        dsc.setUsername("root");
-//        dsc.setPassword("syk123456");
-//        dsc.setUrl("jdbc:mysql://localhost:3306/rocketmq?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC");
+//        dsc.setPassword("123456");
+//        dsc.setUrl("jdbc:mysql://localhost:3306/rocket_mq?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC");
 //        mpg.setDataSource(dsc);
 //
 //        // 策略配置
 //        StrategyConfig strategy = new StrategyConfig();
-////        strategy.setTablePrefix(new String[]{""});// 此处可以修改为您的表前缀
-//        strategy.setInclude(new String[]{"messagetag1","messagetag2"});//需要生成的表
-//        strategy.setNaming(NamingStrategy.underline_to_camel);//表名生成策略
+//        // 此处可以修改为您的表前缀
+////        strategy.setTablePrefix(new String[]{""});
+//        //需要生成的表
+//        strategy.setInclude(new String[]{"log",});
+//        //表名生成策略
+//        strategy.setNaming(NamingStrategy.underline_to_camel);
 //        //strategy.setEntityColumnConstant(true);
 //        //strategy.setEntityBuilderModel(true);
 //        //strategy.setCapitalMode(true);
@@ -61,8 +75,9 @@
 //        pc.setMapper("com.shi.rocketmqconsumer.dao");
 //        pc.setXml("com.shi.rocketmqconsumer.mapper");
 //        pc.setService("com.shi.rocketmqconsumer.service");
-//        pc.setServiceImpl("com.shi.rocketmqconsumer.impl");
-//        pc.setController("com.shi.rocketmqconsumer.controller");    //本项目没用，生成之后删掉
+//        pc.setServiceImpl("com.shi.rocketmqconsumer.service.impl");
+//        //本项目没用，生成之后删掉
+//        pc.setController("com.shi.rocketmqconsumer.controller");
 //        mpg.setPackageInfo(pc);
 //
 //        // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值

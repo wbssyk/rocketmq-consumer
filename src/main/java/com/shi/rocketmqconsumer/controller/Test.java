@@ -1,4 +1,4 @@
-package com.shi.rocketmqconsumer.consumer;
+package com.shi.rocketmqconsumer.controller;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -13,13 +13,13 @@ public class Test {
 
     public static void main(String[] args) throws MQClientException {
         // 实例化消费者
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("rocketmq-shiyakun");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("77777");
 
         // 设置NameServer的地址
-        consumer.setNamesrvAddr("192.168.13.130:9876;192.168.13.131:9876");
+        consumer.setNamesrvAddr("192.168.1.200:9876;192.168.1.201:9876;192.168.1.202:9876");
 
         // 订阅一个或者多个Topic，以及Tag来过滤需要消费的消息
-        consumer.subscribe("Topic-1", "*");
+        consumer.subscribe("777", "*");
         // 注册回调实现类来处理从broker拉取回来的消息
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override

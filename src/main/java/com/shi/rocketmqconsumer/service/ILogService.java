@@ -1,6 +1,6 @@
 package com.shi.rocketmqconsumer.service;
 
-import com.shi.rocketmqconsumer.entity.Messagetag2;
+import com.shi.rocketmqconsumer.entity.Log;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author shiyakun
- * @since 2019-05-26
+ * @since 2019-09-30
  */
-public interface IMessagetag2Service extends IService<Messagetag2> {
+public interface ILogService extends IService<Log> {
 
 }
